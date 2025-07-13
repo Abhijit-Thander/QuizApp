@@ -4,6 +4,8 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Quizdata from "../Data/Quizdata";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
+import lottie from "../../assets/lottie.json";
+import LottieView from "lottie-react-native";
 
 import { useQuizContext } from "../provider/Quizprovider";
 
@@ -23,7 +25,7 @@ const QuizScreen = () => {
       {/* Header */}
       <View>
         <Text>
-          Question: {questionIndex + 1 && questionIndex}/{Quizdata.length}
+          Question: {questionIndex}/{Quizdata.length}
         </Text>
       </View>
 
@@ -39,15 +41,23 @@ const QuizScreen = () => {
               marginTop: 10,
             }}
           >
-            Times left:{secondsLeft}s
+            Times left: {secondsLeft}s
           </Text>
         </View>
       ) : (
-        <Card title="Well Done">
-          <Text>Congratulations! You've completed the quiz🎉🎉.</Text>
-          <Text style={styles.scoreText}>Score: {score}</Text>
-          <Text style={styles.scoreText}>Best Score: {bestScore}</Text>
-        </Card>
+        <>
+          <LottieView
+            source={lottie}
+            autoPlay
+            loop={false}
+            style={StyleSheet.absoluteFill}
+          />
+          <Card title="Well Done">
+            <Text>Congratulations! You've completed the quiz🎉🎉.</Text>
+            <Text style={styles.scoreText}>Score: {score}</Text>
+            <Text style={styles.scoreText}>Best Score: {bestScore}</Text>
+          </Card>
+        </>
       )}
       {/* Footer */}
 

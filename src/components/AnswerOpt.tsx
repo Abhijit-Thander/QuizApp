@@ -1,5 +1,5 @@
-import { StyleSheet, Text, Alert, Pressable } from "react-native";
-import React, { useContext } from "react";
+import { StyleSheet, Text, Pressable, View } from "react-native";
+import React from "react";
 import { useQuizContext } from "../provider/Quizprovider";
 
 type AnswerOptProps = {
@@ -9,14 +9,20 @@ type AnswerOptProps = {
 const AnswerOpt: React.FC<AnswerOptProps> = ({ option }) => {
   const { selectedOption, setSelectedOption } = useQuizContext();
 
-  const isSelected = option === selectedOption;
+  const isSelected = option === selectedOption;  
 
   return (
     <Pressable
       onPress={() => setSelectedOption(option)}
-      style={[styles.container, isSelected && { borderColor: "green" }]}
+      style={({ pressed }) => [
+        styles.container,
+        isSelected && styles.selected,
+        pressed && styles.pressed,
+      ]}
     >
-      <Text style={styles.text}>{option}</Text>
+      <Text style={[styles.text, isSelected && styles.selectedText]}>
+        {option}
+      </Text>
     </Pressable>
   );
 };
@@ -26,15 +32,28 @@ export default AnswerOpt;
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    // backgroundColor: "#f0f0f0",
-    padding: 12,
-    borderRadius: 50,
-    borderWidth: 1,
+    backgroundColor: "#f7f7f7",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    borderWidth: 0.8,
     borderColor: "#ccc",
-    marginVertical: 5,
+    marginVertical: 6,
+  },
+  selected: {
+    backgroundColor: "#14CF93",
+    borderColor: "#14CF93",
+  },
+  pressed: {
+    transform: [{ scale: 0.97 }],
+    opacity: 0.85,
   },
   text: {
-    fontSize: 14,
-    // fontWeight: "400",
+    fontSize: 16,
+    color: "#333",
+  },
+  selectedText: {
+    color: "white",
+    fontWeight: "600",
   },
 });

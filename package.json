@@ -13,7 +13,9 @@
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
     "react-native": "0.79.4",
-    "expo-updates": "~0.28.15"
+    "expo-updates": "~0.28.15",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "lottie-react-native": "7.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
